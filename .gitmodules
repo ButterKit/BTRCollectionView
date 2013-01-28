@@ -1,0 +1,3 @@
+[submodule "Butter"]
+	path = Butter
+	url = git@github.com:ButterKit/Butter.git
