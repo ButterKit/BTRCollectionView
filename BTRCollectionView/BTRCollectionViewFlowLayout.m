@@ -7,7 +7,6 @@
 
 #import "BTRCollectionViewFlowLayout.h"
 #import "BTRCollectionView.h"
-#import "BTRGeometryAdditions.h"
 #import "NSIndexPath+BTRAdditions.h"
 #import "NSValue+BTRAdditions.h"
 #import <objc/runtime.h>

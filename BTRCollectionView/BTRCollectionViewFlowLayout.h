@@ -6,7 +6,7 @@
 //
 
 #import "BTRCollectionViewLayout.h"
-#import "BTRGeometryAdditions.h"
+#import  <Butter/Butter.h>
 #import "BTRCollectionViewCommon.h"
 
 typedef NS_ENUM(NSInteger, BTRCollectionViewScrollDirection) {
