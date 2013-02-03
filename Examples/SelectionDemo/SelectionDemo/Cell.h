@@ -8,6 +8,7 @@
 
 #import <Butter/Butter.h>
 #import <Butter/BTRImageView.h>
+#import <BTRCollectionView/BTRCollectionView.h>
 
 @interface Cell : BTRCollectionViewCell
 

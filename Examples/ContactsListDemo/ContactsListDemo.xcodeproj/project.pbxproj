@@ -13,12 +13,13 @@
 		0338B8CC168A68A300A1D2BB /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 0338B8CA168A68A300A1D2BB /* Credits.rtf */; };
 		0338B8CF168A68A300A1D2BB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0338B8CE168A68A300A1D2BB /* AppDelegate.m */; };
 		0338B8D2168A68A300A1D2BB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0338B8D0168A68A300A1D2BB /* MainMenu.xib */; };
-		0338B8E4168A68AC00A1D2BB /* Butter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0338B8E3168A68AC00A1D2BB /* Butter.framework */; };
 		0338B8E6168A68D800A1D2BB /* SectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0338B8E5168A68D800A1D2BB /* SectionHeader.xib */; };
 		0338B8E8168A68E500A1D2BB /* Row.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0338B8E7168A68E500A1D2BB /* Row.xib */; };
 		0338B8EB168A699F00A1D2BB /* SectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0338B8EA168A699F00A1D2BB /* SectionHeader.m */; };
 		0338B8EE168A6C7200A1D2BB /* Row.m in Sources */ = {isa = PBXBuildFile; fileRef = 0338B8ED168A6C7200A1D2BB /* Row.m */; };
 		0338B8F0168A715300A1D2BB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0338B8EF168A715300A1D2BB /* AddressBook.framework */; };
+		2171668B16B71EE700D4540D /* BTRCollectionView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2171668916B71EE700D4540D /* BTRCollectionView.framework */; };
+		2171668C16B71EE700D4540D /* Butter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2171668A16B71EE700D4540D /* Butter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,8 @@
 		0338B8EC168A6C7200A1D2BB /* Row.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Row.h; sourceTree = "<group>"; };
 		0338B8ED168A6C7200A1D2BB /* Row.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Row.m; sourceTree = "<group>"; };
 		0338B8EF168A715300A1D2BB /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		2171668916B71EE700D4540D /* BTRCollectionView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BTRCollectionView.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/BTRCollectionView-dsvjaziqxmqcvdbfemxjgcsddtvx/Build/Products/Debug/BTRCollectionView.framework"; sourceTree = "<group>"; };
+		2171668A16B71EE700D4540D /* Butter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Butter.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/BTRCollectionView-dsvjaziqxmqcvdbfemxjgcsddtvx/Build/Products/Debug/Butter.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,8 +53,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2171668B16B71EE700D4540D /* BTRCollectionView.framework in Frameworks */,
+				2171668C16B71EE700D4540D /* Butter.framework in Frameworks */,
 				0338B8F0168A715300A1D2BB /* AddressBook.framework in Frameworks */,
-				0338B8E4168A68AC00A1D2BB /* Butter.framework in Frameworks */,
 				0338B8BC168A68A300A1D2BB /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,6 +66,8 @@
 		0338B8AF168A68A300A1D2BB = {
 			isa = PBXGroup;
 			children = (
+				2171668916B71EE700D4540D /* BTRCollectionView.framework */,
+				2171668A16B71EE700D4540D /* Butter.framework */,
 				0338B8C1168A68A300A1D2BB /* ContactsListDemo */,
 				0338B8BA168A68A300A1D2BB /* Frameworks */,
 				0338B8B9168A68A300A1D2BB /* Products */,
@@ -295,6 +301,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/Butter-efnfuzlzcszjexczntjphyuejbht/Build/Products/Debug\"",
+					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/BTRCollectionView-dsvjaziqxmqcvdbfemxjgcsddtvx/Build/Products/Debug\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ContactsListDemo/ContactsListDemo-Prefix.pch";
@@ -311,6 +318,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/Butter-efnfuzlzcszjexczntjphyuejbht/Build/Products/Debug\"",
+					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/BTRCollectionView-dsvjaziqxmqcvdbfemxjgcsddtvx/Build/Products/Debug\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ContactsListDemo/ContactsListDemo-Prefix.pch";
@@ -339,6 +347,7 @@
 				0338B8D7168A68A300A1D2BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

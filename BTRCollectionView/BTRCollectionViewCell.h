@@ -6,7 +6,7 @@
 //  Header documentation is from Apple's documentation for UICollectionView: Copyright (c) 2012 Apple Inc. All Rights Reserved
 
 #import "BTRCollectionViewCommon.h"
-#import "BTRView.h"
+#import <Butter/Butter.h>
 
 @class BTRCollectionViewLayout, BTRCollectionView, BTRCollectionViewLayoutAttributes;
 

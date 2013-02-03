@@ -11,7 +11,7 @@
 #import "BTRCollectionViewCommon.h"
 #import "NSIndexPath+BTRAdditions.h"
 
-#import "BTRView.h"
+#import <Butter/Butter.h>
 
 typedef NS_OPTIONS(NSUInteger, BTRCollectionViewScrollPosition) {
 	/**
