@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB2D9EC9167474E800F67E99 /* Butter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2D9EC8167474E800F67E99 /* Butter.framework */; };
+		2171668616B71E7E00D4540D /* BTRCollectionView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2171668416B71E7E00D4540D /* BTRCollectionView.framework */; };
+		2171668716B71E7E00D4540D /* Butter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2171668516B71E7E00D4540D /* Butter.framework */; };
 		ABC2152C16729CC7006D2B79 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC2152B16729CC7006D2B79 /* Cocoa.framework */; };
 		ABC2153616729CC7006D2B79 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ABC2153416729CC7006D2B79 /* InfoPlist.strings */; };
 		ABC2153816729CC7006D2B79 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC2153716729CC7006D2B79 /* main.m */; };
@@ -32,6 +33,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2171668416B71E7E00D4540D /* BTRCollectionView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BTRCollectionView.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/BTRCollectionView-dsvjaziqxmqcvdbfemxjgcsddtvx/Build/Products/Debug/BTRCollectionView.framework"; sourceTree = "<group>"; };
+		2171668516B71E7E00D4540D /* Butter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Butter.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/BTRCollectionView-dsvjaziqxmqcvdbfemxjgcsddtvx/Build/Products/Debug/Butter.framework"; sourceTree = "<group>"; };
 		AB2D9EC8167474E800F67E99 /* Butter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Butter.framework; path = "../../../../../../../../Library/Developer/Xcode/DerivedData/Butter-bjfloiylqfftatgkatimtajxtelx/Build/Products/Debug/Butter.framework"; sourceTree = "<group>"; };
 		ABC2152816729CC7006D2B79 /* CircleLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CircleLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABC2152B16729CC7006D2B79 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -58,7 +61,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB2D9EC9167474E800F67E99 /* Butter.framework in Frameworks */,
+				2171668616B71E7E00D4540D /* BTRCollectionView.framework in Frameworks */,
+				2171668716B71E7E00D4540D /* Butter.framework in Frameworks */,
 				ABC215B51672A066006D2B79 /* QuartzCore.framework in Frameworks */,
 				ABC2152C16729CC7006D2B79 /* Cocoa.framework in Frameworks */,
 			);
@@ -70,6 +74,8 @@
 		ABC2151F16729CC7006D2B79 = {
 			isa = PBXGroup;
 			children = (
+				2171668416B71E7E00D4540D /* BTRCollectionView.framework */,
+				2171668516B71E7E00D4540D /* Butter.framework */,
 				ABC2153116729CC7006D2B79 /* CircleLayout */,
 				ABC2152A16729CC7006D2B79 /* Frameworks */,
 				ABC2152916729CC7006D2B79 /* Products */,
@@ -297,7 +303,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/BTRCollectionView-dsvjaziqxmqcvdbfemxjgcsddtvx/Build/Products/Debug\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CircleLayout/CircleLayout-Prefix.pch";
 				INFOPLIST_FILE = "CircleLayout/CircleLayout-Info.plist";
@@ -310,7 +319,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/BTRCollectionView-dsvjaziqxmqcvdbfemxjgcsddtvx/Build/Products/Debug\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CircleLayout/CircleLayout-Prefix.pch";
 				INFOPLIST_FILE = "CircleLayout/CircleLayout-Info.plist";

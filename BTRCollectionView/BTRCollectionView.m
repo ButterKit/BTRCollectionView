@@ -13,7 +13,6 @@
 #import "BTRCollectionViewLayout.h"
 #import "BTRCollectionViewFlowLayout.h"
 
-#import "NSView+BTRAdditions.h"
 
 NSString *const BTRCollectionElementKindCell = @"BTRCollectionElementKindCell";
 NSString *const BTRCollectionElementKindDecorationView = @"BTRCollectionElementKindDecorationView";

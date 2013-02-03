@@ -7,7 +7,6 @@
 
 #import "BTRCollectionView.h"
 #import "BTRCollectionViewLayout.h"
-#import "BTRGeometryAdditions.h"
 #import "NSIndexPath+BTRAdditions.h"
 
 NSString *const BTRCollectionElementKindSectionHeader = @"BTRCollectionElementKindSectionHeader";

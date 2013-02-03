@@ -7,6 +7,7 @@
 //
 
 #import <Butter/Butter.h>
+#import <BTRCollectionView/BTRCollectionView.h>
 
 @interface HeaderView : BTRCollectionReusableView
 
