@@ -24,18 +24,11 @@
 		2171646716B71A7400D4540D /* NSValue+BTRAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171645916B71A7400D4540D /* NSValue+BTRAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2171646816B71A7400D4540D /* NSValue+BTRAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2171645A16B71A7400D4540D /* NSValue+BTRAdditions.m */; };
 		217164C316B71B1900D4540D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217164C216B71B1900D4540D /* QuartzCore.framework */; };
-		217164C416B71B1C00D4540D /* Butter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217164BA16B71AE800D4540D /* Butter.framework */; };
 		2171668016B71E1A00D4540D /* BTRCollectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171644116B71A1C00D4540D /* BTRCollectionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AB0BCDD816BE013E0060845D /* Butter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BCDCD16BE01010060845D /* Butter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		217164B916B71AE800D4540D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2171649316B71AE800D4540D /* Butter.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 03239EB21672E6D6004263D7;
-			remoteInfo = Butter;
-		};
 		2171667216B71D8000D4540D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2171660016B71D7F00D4540D /* BasicExample.xcodeproj */;
@@ -64,6 +57,20 @@
 			remoteGlobalIDString = ABE938C716792D5200A7A1B8;
 			remoteInfo = SelectionDemo;
 		};
+		AB0BCDCC16BE01010060845D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB0BCDC116BE01010060845D /* Butter.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 03239EB21672E6D6004263D7;
+			remoteInfo = Butter;
+		};
+		AB0BCDD616BE012E0060845D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB0BCDC116BE01010060845D /* Butter.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 03239EB11672E6D6004263D7;
+			remoteInfo = Butter;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -90,7 +97,6 @@
 		2171645816B71A7400D4540D /* NSIndexPath+BTRAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+BTRAdditions.m"; sourceTree = "<group>"; };
 		2171645916B71A7400D4540D /* NSValue+BTRAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+BTRAdditions.h"; sourceTree = "<group>"; };
 		2171645A16B71A7400D4540D /* NSValue+BTRAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+BTRAdditions.m"; sourceTree = "<group>"; };
-		2171649316B71AE800D4540D /* Butter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Butter.xcodeproj; path = Butter/Butter.xcodeproj; sourceTree = SOURCE_ROOT; };
 		217164C216B71B1900D4540D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		217165EF16B71D7F00D4540D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		217165F016B71D7F00D4540D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -178,6 +184,7 @@
 		2171665E16B71D7F00D4540D /* 7.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.JPG; sourceTree = "<group>"; };
 		2171665F16B71D7F00D4540D /* 8.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.JPG; sourceTree = "<group>"; };
 		2171666016B71D7F00D4540D /* 9.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.JPG; sourceTree = "<group>"; };
+		AB0BCDC116BE01010060845D /* Butter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Butter.xcodeproj; path = External/Butter/Butter.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,7 +192,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				217164C416B71B1C00D4540D /* Butter.framework in Frameworks */,
+				AB0BCDD816BE013E0060845D /* Butter.framework in Frameworks */,
 				217164C316B71B1900D4540D /* QuartzCore.framework in Frameworks */,
 				2171643516B71A1C00D4540D /* Cocoa.framework in Frameworks */,
 			);
@@ -197,6 +204,7 @@
 		2171642516B71A1C00D4540D = {
 			isa = PBXGroup;
 			children = (
+				AB0BCDCE16BE01130060845D /* External */,
 				2171643A16B71A1C00D4540D /* BTRCollectionView */,
 				2171643316B71A1C00D4540D /* Frameworks */,
 				217165EC16B71D7F00D4540D /* Examples */,
@@ -235,7 +243,6 @@
 		2171643A16B71A1C00D4540D /* BTRCollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				2171649316B71AE800D4540D /* Butter.xcodeproj */,
 				2171644D16B71A7400D4540D /* BTRCollectionViewCell.m */,
 				2171644C16B71A7400D4540D /* BTRCollectionViewCell.h */,
 				2171644E16B71A7400D4540D /* BTRCollectionViewCommon.h */,
@@ -272,14 +279,6 @@
 				2171645A16B71A7400D4540D /* NSValue+BTRAdditions.m */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		2171649416B71AE800D4540D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				217164BA16B71AE800D4540D /* Butter.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		217165EC16B71D7F00D4540D /* Examples */ = {
@@ -487,6 +486,22 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		AB0BCDC216BE01010060845D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AB0BCDCD16BE01010060845D /* Butter.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AB0BCDCE16BE01130060845D /* External */ = {
+			isa = PBXGroup;
+			children = (
+				AB0BCDC116BE01010060845D /* Butter.xcodeproj */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -520,6 +535,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				AB0BCDD716BE012E0060845D /* PBXTargetDependency */,
 			);
 			name = BTRCollectionView;
 			productName = BTRCollectionView;
@@ -551,8 +567,8 @@
 					ProjectRef = 2171660016B71D7F00D4540D /* BasicExample.xcodeproj */;
 				},
 				{
-					ProductGroup = 2171649416B71AE800D4540D /* Products */;
-					ProjectRef = 2171649316B71AE800D4540D /* Butter.xcodeproj */;
+					ProductGroup = AB0BCDC216BE01010060845D /* Products */;
+					ProjectRef = AB0BCDC116BE01010060845D /* Butter.xcodeproj */;
 				},
 				{
 					ProductGroup = 2171661516B71D7F00D4540D /* Products */;
@@ -575,13 +591,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		217164BA16B71AE800D4540D /* Butter.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Butter.framework;
-			remoteRef = 217164B916B71AE800D4540D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		2171667316B71D8000D4540D /* BasicExample.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
@@ -608,6 +617,13 @@
 			fileType = wrapper.application;
 			path = SelectionDemo.app;
 			remoteRef = 2171667B16B71D8000D4540D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AB0BCDCD16BE01010060845D /* Butter.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Butter.framework;
+			remoteRef = AB0BCDCC16BE01010060845D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -639,6 +655,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AB0BCDD716BE012E0060845D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Butter;
+			targetProxy = AB0BCDD616BE012E0060845D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2171643D16B71A1C00D4540D /* InfoPlist.strings */ = {

@@ -10,6 +10,7 @@
 #import "Row.h"
 #import "SectionHeader.h"
 #import <AddressBook/AddressBook.h>
+#import <BTRCollectionView/BTRCollectionViewListLayout.h>
 
 @implementation AppDelegate {
 	NSArray *_sections;
