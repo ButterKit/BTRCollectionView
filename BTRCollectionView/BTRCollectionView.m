@@ -775,8 +775,10 @@ static NSString* const BTRCollectionViewViewKey = @"BTRCollectionViewViewKey";
 	BOOL moreThanOneSection = ([_collectionViewData numberOfSections] > 1);
 	NSUInteger section = ((firstSection & moreThanOneSection) ? [currentIndexPath indexAtPosition:0] - 1 : [currentIndexPath indexAtPosition:0]);
 	
-	NSUInteger newIndex = ([currentIndexPath indexAtPosition:1] - 1);
-	NSUInteger indexArr[] = {section, (newIndex != 0 ? newIndex : 0)};
+	NSUInteger newIndex = ([currentIndexPath indexAtPosition:1] != 0 ? [currentIndexPath indexAtPosition:1] - 1 : 0);
+	BOOL firstPossibleSelection = (newIndex == 0);
+
+	NSUInteger indexArr[] = {section, (firstPossibleSelection ? 0 : newIndex)};
 	NSIndexPath *newIndexPath = [NSIndexPath indexPathWithIndexes:indexArr length:2];
 	
 	BOOL sameItemSelected = ([currentIndexPath compare:firstIndexPath] == NSOrderedSame);
