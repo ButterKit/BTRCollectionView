@@ -692,18 +692,129 @@ static NSString* const BTRCollectionViewViewKey = @"BTRCollectionViewViewKey";
 
 #pragma mark - Key Events
 
-// Stubs for keyboard event implementation
-
+//Keyboard interprested events are sent to NSResponder to be converted into the
+//methods below
 - (void)keyDown:(NSEvent *)theEvent {
 	[self interpretKeyEvents:[NSArray arrayWithObject:theEvent]];
 }
 
+//The up arrow key was pressed (sans shift key).
 - (void)moveUp:(id)sender {
-	
+
 }
 
+//The down arrow key was pressed (sans shift key).
 - (void)moveDown:(id)sender {
+
+}
+
+
+//The left arrow key was pressed with (sans shift key).  Only select the item
+//immediately to the left of the current selected index.
+- (void)moveLeft:(id)sender {
+	if (self.indexPathsForSelectedItems.count == 0) return;
 	
+	NSIndexPath *newIndexPath = nil;
+
+	if (self.indexPathsForSelectedItems.count == 1) {
+		NSIndexPath *currentIndexPath = self.indexPathsForSelectedItems.lastObject;
+		
+		BOOL firstSection = [currentIndexPath indexAtPosition:0] == 0;
+		BOOL moreThanOneSection = ([_collectionViewData numberOfSections] > 1);
+		NSUInteger section = ((firstSection & moreThanOneSection) ? [currentIndexPath indexAtPosition:0] - 1 : [currentIndexPath indexAtPosition:0]);
+		
+		NSUInteger newIndex = ([currentIndexPath indexAtPosition:1] != 0 ? [currentIndexPath indexAtPosition:1] - 1 : 0);
+		NSUInteger indexArr[] = {section, newIndex};
+		newIndexPath = [NSIndexPath indexPathWithIndexes:indexArr length:2];
+	} else {
+		NSIndexPath *currentIndexPath = self.indexPathsForSelectedItems.lastObject;
+		newIndexPath = currentIndexPath;
+	}
+	
+	[self deselectAllItems];
+	[self selectItemAtIndexPath:newIndexPath animated:self.animatesSelection scrollPosition:BTRCollectionViewScrollPositionCenteredVertically notifyDelegate:YES];
+}
+
+//The right arrow key was pressed (sans shift key).  Only select the item
+//immediately to the right of the current selected index.
+- (void)moveRight:(id)sender {
+	if (self.indexPathsForSelectedItems.count == 0) return;
+
+	NSIndexPath *newIndexPath = nil;
+	
+	if (self.indexPathsForSelectedItems.count == 1) {
+		NSIndexPath *currentIndexPath = self.indexPathsForSelectedItems.lastObject;
+		BOOL firstSection = [currentIndexPath indexAtPosition:0] == 0;
+		NSUInteger section = (firstSection ? [currentIndexPath indexAtPosition:0] : [currentIndexPath indexAtPosition:0] - 1);
+		
+		NSUInteger newIndex = ([currentIndexPath indexAtPosition:1] + 1);
+		NSUInteger numberOfItems = [_collectionViewData numberOfItemsInSection:currentIndexPath.section];
+		BOOL lastPossibleSelection = (newIndex == numberOfItems);
+		
+		NSUInteger indexArr[] = {section, (lastPossibleSelection ? (numberOfItems - 1) : newIndex)};
+		newIndexPath = [NSIndexPath indexPathWithIndexes:indexArr length:2];
+	} else {
+		NSIndexPath *currentIndexPath = self.indexPathsForSelectedItems.lastObject;
+		newIndexPath = currentIndexPath;
+	}
+	[self deselectAllItems];
+	[self selectItemAtIndexPath:newIndexPath animated:YES scrollPosition:BTRCollectionViewScrollPositionCenteredVertically notifyDelegate:YES];
+}
+
+//The left arrow key was pressed with the shift key.  Select the item to the
+//left, but not before checking for both equality (the same item being selected
+//should do nothing), and checking that we don't make a non-contiguous selected
+//item array.
+- (void)moveLeftAndModifySelection:(id)sender {
+	if (self.indexPathsForSelectedItems.count == 0) return;
+
+	NSIndexPath *firstIndexPath = [self.indexPathsForSelectedItems objectAtIndex:0];
+	NSIndexPath *currentIndexPath = self.indexPathsForSelectedItems.lastObject;
+	
+	BOOL firstSection = [currentIndexPath indexAtPosition:0] == 0;
+	BOOL moreThanOneSection = ([_collectionViewData numberOfSections] > 1);
+	NSUInteger section = ((firstSection & moreThanOneSection) ? [currentIndexPath indexAtPosition:0] - 1 : [currentIndexPath indexAtPosition:0]);
+	
+	NSUInteger newIndex = ([currentIndexPath indexAtPosition:1] - 1);
+	NSUInteger indexArr[] = {section, (newIndex != 0 ? newIndex : 0)};
+	NSIndexPath *newIndexPath = [NSIndexPath indexPathWithIndexes:indexArr length:2];
+	
+	BOOL sameItemSelected = ([currentIndexPath compare:firstIndexPath] == NSOrderedSame);
+	BOOL sanityCheck = ([currentIndexPath indexAtPosition:1] <= [firstIndexPath indexAtPosition:1]);
+	if (!sanityCheck && !sameItemSelected) {
+		[self deselectItemAtIndexPath:currentIndexPath animated:self.animatesSelection notifyDelegate:YES];
+	}
+
+	[self selectItemAtIndexPath:newIndexPath animated:YES scrollPosition:BTRCollectionViewScrollPositionCenteredVertically notifyDelegate:YES];
+}
+
+//The right arrow key was pressed with the shift key.  Select the item to the
+//right, but not before checking for both equality (the same item being selected
+//should do nothing), and checking that we don't make a non-contiguous selected
+//item array.
+- (void)moveRightAndModifySelection:(id)sender {
+	if (self.indexPathsForSelectedItems.count == 0) return;
+	
+	NSIndexPath *firstIndexPath = [self.indexPathsForSelectedItems objectAtIndex:0];
+	NSIndexPath *currentIndexPath = self.indexPathsForSelectedItems.lastObject;
+	
+	BOOL lastSection = ([currentIndexPath indexAtPosition:0] == [_collectionViewData numberOfSections] - 1);
+	BOOL moreThanOneSection = ([_collectionViewData numberOfSections] > 1);
+
+	NSUInteger section = ((lastSection & moreThanOneSection) ? [currentIndexPath indexAtPosition:0] + 1 : [currentIndexPath indexAtPosition:0]);
+	
+	NSUInteger numberOfItems = [_collectionViewData numberOfItemsInSection:currentIndexPath.section] - 1;
+	NSUInteger newIndex = ([currentIndexPath indexAtPosition:1] + 1);
+	BOOL lastPossibleSelection = (newIndex >= numberOfItems);
+	NSUInteger newIndexArr[] = {section, ((lastPossibleSelection & lastSection & !moreThanOneSection) ? numberOfItems : newIndex)};
+	NSIndexPath *newIndexPath = [NSIndexPath indexPathWithIndexes:newIndexArr length:2];
+	
+	BOOL sameItemSelected = ([currentIndexPath compare:firstIndexPath] == NSOrderedSame);
+	BOOL sanityCheck = ([currentIndexPath indexAtPosition:1] >= [firstIndexPath indexAtPosition:1]);
+	if (!sanityCheck && !sameItemSelected) {
+		[self deselectItemAtIndexPath:currentIndexPath animated:self.animatesSelection notifyDelegate:YES];
+	}
+	[self selectItemAtIndexPath:newIndexPath animated:YES scrollPosition:BTRCollectionViewScrollPositionCenteredVertically notifyDelegate:YES];
 }
 
 #pragma mark - Selection and Highlighting
