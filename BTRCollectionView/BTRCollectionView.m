@@ -137,6 +137,10 @@ static NSString* const BTRCollectionViewViewKey = @"BTRCollectionViewViewKey";
 	_supplementaryViewNibDict = [NSMutableDictionary new];
 }
 
+- (instancetype)initWithFrame:(NSRect)frameRect {
+	return [self initWithFrame:frameRect collectionViewLayout:nil];
+}
+
 - (id)initWithFrame:(CGRect)frame collectionViewLayout:(BTRCollectionViewLayout *)layout {
 	if ((self = [super initWithFrame:frame])) {
 		[self BTRCollectionViewCommonSetup];
