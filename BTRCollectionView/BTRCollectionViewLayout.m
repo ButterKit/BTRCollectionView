@@ -6,16 +6,27 @@
 //
 
 #import "BTRCollectionView.h"
+#import "BTRCollectionViewData.h"
 #import "BTRCollectionViewLayout.h"
+#import "BTRCollectionViewItemKey.h"
+#import "BTRCollectionViewUpdateItem.h"
 #import "NSIndexPath+BTRAdditions.h"
 
-NSString *const BTRCollectionElementKindSectionHeader = @"BTRCollectionElementKindSectionHeader";
-NSString *const BTRCollectionElementKindSectionFooter = @"BTRCollectionElementKindSectionFooter";
+NSString * const BTRCollectionElementKindSectionHeader = @"BTRCollectionElementKindSectionHeader";
+NSString * const BTRCollectionElementKindSectionFooter = @"BTRCollectionElementKindSectionFooter";
 
-NSString* const BTRCollectionViewOldModelKey = @"BTRCollectionViewOldModelKey";
-NSString* const BTRCollectionViewNewModelKey = @"BTRCollectionViewNewModelKey";
-NSString *const BTRCollectionViewOldToNewIndexMapKey = @"BTRCollectionViewOldToNewIndexMapKey";
-NSString* const BTRCollectionViewNewToOldIndexMapKey = @"BTRCollectionViewNewToOldIndexMapKey";
+NSString * const BTRCollectionViewOldModelKey = @"BTRCollectionViewOldModelKey";
+NSString * const BTRCollectionViewNewModelKey = @"BTRCollectionViewNewModelKey";
+NSString * const BTRCollectionViewOldToNewIndexMapKey = @"BTRCollectionViewOldToNewIndexMapKey";
+NSString * const BTRCollectionViewNewToOldIndexMapKey = @"BTRCollectionViewNewToOldIndexMapKey";
+
+NSString * const BTRCollectionViewDeletedItemsCount = @"BTRCollectionViewDeletedItemsCount";
+NSString * const BTRCollectionViewInsertedItemsCount = @"BTRCollectionViewInsertedItemsCount";
+NSString * const BTRCollectionViewMovedOutCount = @"BTRCollectionViewMovedOutCount";
+NSString * const BTRCollectionViewMovedInCount = @"BTRCollectionViewMovedInCount";
+NSString * const BTRCollectionViewPreviousLayoutInfoKey = @"BTRCollectionViewPreviousLayoutInfoKey";
+NSString * const BTRCollectionViewNewLayoutInfoKey = @"BTRCollectionViewNewLayoutInfoKey";
+NSString * const BTRCollectionViewViewKey = @"BTRCollectionViewViewKey";
 
 @interface BTRCollectionView ()
 - (NSDictionary *)currentUpdate;
@@ -59,10 +70,10 @@ NSString* const BTRCollectionViewNewToOldIndexMapKey = @"BTRCollectionViewNewToO
 	return attributes;
 }
 
-+ (instancetype)layoutAttributesForDecorationViewOfKind:(NSString *)decorationViewKind withIndexPath:(NSIndexPath*)indexPath {
++ (instancetype)layoutAttributesForDecorationViewOfKind:(NSString *)kind withIndexPath:(NSIndexPath*)indexPath {
 	BTRCollectionViewLayoutAttributes *attributes = [self new];
 	attributes.elementKind = BTRCollectionElementKindDecorationView;
-	attributes.reuseIdentifier = decorationViewKind;
+	attributes.reuseIdentifier = kind;
 	attributes.indexPath = indexPath;
 	return attributes;
 }
@@ -100,9 +111,9 @@ NSString* const BTRCollectionViewNewToOldIndexMapKey = @"BTRCollectionViewNewToO
 - (BTRCollectionViewItemType)representedElementCategory {
 	if ([self.elementKind isEqualToString:BTRCollectionElementKindCell]) {
 		return BTRCollectionViewItemTypeCell;
-	}else if([self.elementKind isEqualToString:BTRCollectionElementKindDecorationView]) {
+	} else if([self.elementKind isEqualToString:BTRCollectionElementKindDecorationView]) {
 		return BTRCollectionViewItemTypeDecorationView;
-	}else {
+	} else {
 		return BTRCollectionViewItemTypeSupplementaryView;
 	}
 }
@@ -127,18 +138,18 @@ NSString* const BTRCollectionViewNewToOldIndexMapKey = @"BTRCollectionViewNewToO
 
 - (void)setSize:(CGSize)size {
 	_size = size;
-	_frame = (CGRect){_frame.origin, _size};
+	_frame = (CGRect){ _frame.origin, _size };
 }
 
 - (void)setCenter:(CGPoint)center {
 	_center = center;
-	_frame = (CGRect){{_center.x - _frame.size.width / 2.f, _center.y - _frame.size.height / 2.f}, _frame.size};
+	_frame = (CGRect){{ _center.x - _frame.size.width / 2.f, _center.y - _frame.size.height / 2.f}, _frame.size };
 }
 
 - (void)setFrame:(CGRect)frame {
 	_frame = frame;
 	_size = _frame.size;
-	_center = (CGPoint){CGRectGetMidX(_frame), CGRectGetMidY(_frame)};
+	_center = (CGPoint){ CGRectGetMidX(_frame), CGRectGetMidY(_frame) };
 }
 
 #pragma mark - NSCopying
@@ -172,6 +183,9 @@ NSString* const BTRCollectionViewNewToOldIndexMapKey = @"BTRCollectionViewNewToO
 	NSMutableDictionary *_decorationViewExternalObjectsTables;
 }
 @property (nonatomic, unsafe_unretained) BTRCollectionView *collectionView;
+@property (nonatomic, copy, readonly) NSDictionary *decorationViewClassDict;
+@property (nonatomic, copy, readonly) NSDictionary *decorationViewNibDict;
+@property (nonatomic, copy, readonly) NSDictionary *decorationViewExternalObjectsTables;
 @end
 
 @implementation BTRCollectionViewLayout
@@ -199,15 +213,25 @@ NSString* const BTRCollectionViewNewToOldIndexMapKey = @"BTRCollectionViewNewToO
 #pragma mark - Invalidating the Layout
 
 - (void)invalidateLayout {
+	[[_collectionView collectionViewData] invalidate];
+	[_collectionView setNeedsDisplay:YES];
 }
 
-- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
-	return NO;
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {	
+	if ((self.collectionView.bounds.size.width != newBounds.size.width ) || (self.collectionView.bounds.size.height != newBounds.size.height )) {
+        return YES;
+    }
+    return NO;
 }
 
 #pragma mark - Providing Layout Attributes
 
++ (Class)layoutAttributesClass {
+	return [BTRCollectionViewLayoutAttributes class];
+}
+
 - (void)prepareLayout {
+
 }
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {
@@ -238,6 +262,7 @@ NSString* const BTRCollectionViewNewToOldIndexMapKey = @"BTRCollectionViewNewToO
 #pragma mark - Responding to Collection View Updates
 
 - (void)prepareForCollectionViewUpdates:(NSArray *)updateItems {
+	
 	NSDictionary* update = [_collectionView currentUpdate];
 	BTRCollectionViewData *oldModel = update[BTRCollectionViewOldModelKey];
 	BTRCollectionViewData *newModel = update[BTRCollectionViewNewModelKey];
@@ -297,6 +322,82 @@ NSString* const BTRCollectionViewNewToOldIndexMapKey = @"BTRCollectionViewNewToO
 			}
 		}
 	}];
+	
+	
+	/*
+	NSDictionary *update = [_collectionView currentUpdate];
+	
+    for (BTRCollectionReusableView *view in [[_collectionView visibleViewsDict] objectEnumerator]) {
+        BTRCollectionViewLayoutAttributes *attr = [view.layoutAttributes copy];
+        if (attr.isCell) {
+            
+            NSInteger index = [update[BTRCollectionViewOldModelKey] globalIndexForItemAtIndexPath:[attr indexPath]];
+            
+            if(index != NSNotFound) {
+                index = [update[BTRCollectionViewOldToNewIndexMapKey][index] intValue];
+                if(index != NSNotFound) {
+                    [attr setIndexPath:[update[@"newModel"] indexPathForItemAtGlobalIndex:index]];
+                }
+            }
+        }
+        _initialAnimationLayoutAttributesDict[[BTRCollectionViewItemKey collectionItemKeyForLayoutAttributes:attr]] = attr;
+    }
+	
+    BTRCollectionViewData *collectionViewData = [_collectionView collectionViewData];
+	
+    CGRect bounds = [_collectionView bounds];
+	
+    for (BTRCollectionViewLayoutAttributes *attr in [collectionViewData layoutAttributesForElementsInRect:bounds]) {
+        if (attr.isCell) {
+            NSInteger index = [collectionViewData globalIndexForItemAtIndexPath:attr.indexPath];
+            
+            index = [update[@"newToOldIndexMap"][index] intValue];
+            if(index != NSNotFound) {
+                BTRCollectionViewLayoutAttributes* finalAttrs = [attr copy];
+                [finalAttrs setIndexPath:[update[@"oldModel"] indexPathForItemAtGlobalIndex:index]];
+                [finalAttrs setAlpha:0];
+                _finalAnimationLayoutAttributesDict[[BTRCollectionViewItemKey collectionItemKeyForLayoutAttributes:finalAttrs]] = finalAttrs;
+            }
+        }
+    }
+	
+    for (BTRCollectionViewUpdateItem *updateItem in updateItems) {
+        BTRCollectionUpdateAction action = updateItem.updateAction;
+		
+        if ([updateItem isSectionOperation]) {
+            if(action == BTRCollectionUpdateActionReload) {
+                [_deletedSectionsSet addIndex:[[updateItem indexPathBeforeUpdate] section]];
+                [_insertedSectionsSet addIndex:[updateItem indexPathAfterUpdate].section];
+            } else {
+                NSMutableIndexSet *indexSet = action == BTRCollectionUpdateActionInsert ? _insertedSectionsSet : _deletedSectionsSet;
+                [indexSet addIndex:[updateItem indexPath].section];
+            }
+        }
+        else {
+            if (action == BTRCollectionUpdateActionDelete) {
+                BTRCollectionViewItemKey *key = [BTRCollectionViewItemKey collectionItemKeyForCellWithIndexPath:
+                                                 [updateItem indexPathBeforeUpdate]];
+				
+                BTRCollectionViewLayoutAttributes *attrs = [_finalAnimationLayoutAttributesDict[key]copy];
+				
+                if(attrs) {
+                    [attrs setAlpha:0];
+                    _finalAnimationLayoutAttributesDict[key] = attrs;
+                }
+            }
+            else if (action == BTRCollectionUpdateActionReload || action == BTRCollectionUpdateActionInsert) {
+                BTRCollectionViewItemKey *key = [BTRCollectionViewItemKey collectionItemKeyForCellWithIndexPath:
+                                                 [updateItem indexPathAfterUpdate]];
+                BTRCollectionViewLayoutAttributes *attrs = [_initialAnimationLayoutAttributesDict[key] copy];
+				
+                if(attrs) {
+                    [attrs setAlpha:0];
+                    _initialAnimationLayoutAttributesDict[key] = attrs;
+                }
+            }
+        }
+    }
+	 */
 }
 
 - (BTRCollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath*)itemIndexPath {
@@ -336,9 +437,11 @@ NSString* const BTRCollectionViewNewToOldIndexMapKey = @"BTRCollectionViewNewToO
 #pragma mark - Registering Decoration Views
 
 - (void)registerClass:(Class)viewClass forDecorationViewOfKind:(NSString *)decorationViewKind {
+	_decorationViewClassDict[decorationViewKind] = viewClass;
 }
 
 - (void)registerNib:(NSNib *)nib forDecorationViewOfKind:(NSString *)decorationViewKind {
+	_decorationViewNibDict[decorationViewKind] = nib;
 }
 
 #pragma mark - Private

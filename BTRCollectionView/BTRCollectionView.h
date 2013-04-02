@@ -9,6 +9,7 @@
 #import "BTRCollectionViewFlowLayout.h"
 #import "BTRCollectionViewCell.h"
 #import "BTRCollectionViewCommon.h"
+#import "BTRCollectionViewUpdateItem.h"
 #import "NSIndexPath+BTRAdditions.h"
 
 #import <Butter/Butter.h>
@@ -401,60 +402,4 @@ typedef NS_OPTIONS(NSUInteger, BTRCollectionViewScrollPosition) {
  */
 - (void)performBatchUpdates:(void (^)(void))updates completion:(void (^)(void))completion;
 
-@end
-
-extern NSString *const BTRCollectionElementKindCell;
-extern NSString *const BTRCollectionElementKindDecorationView;
-
-@interface BTRCollectionViewData : NSObject
-/// Designated initializer.
-- (id)initWithCollectionView:(BTRCollectionView *)collectionView layout:(BTRCollectionViewLayout *)layout;
-// Ensure data is valid. may fetches items from dataSource and layout.
-- (void)validateLayoutInRect:(CGRect)rect;
-- (CGRect)rectForItemAtIndexPath:(NSIndexPath *)indexPath;
-- (NSUInteger)globalIndexForItemAtIndexPath:(NSIndexPath *)indexPath;
-- (NSIndexPath *)indexPathForItemAtGlobalIndex:(NSUInteger)index;
-// Fetch layout attributes
-- (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect;
-// Make data to re-evaluate dataSources.
-- (void)invalidate;
-// Access cached item data
-- (NSUInteger)numberOfItemsInSection:(NSUInteger)section;
-- (NSUInteger)numberOfItems;
-- (NSUInteger)numberOfSections;
-// Total size of the content.
-- (CGRect)collectionViewContentRect;
-@property (readonly) BOOL layoutIsPrepared;
-@end
-
-typedef NS_ENUM(NSInteger, BTRCollectionUpdateAction) {
-    BTRCollectionUpdateActionInsert,
-    BTRCollectionUpdateActionDelete,
-    BTRCollectionUpdateActionReload,
-    BTRCollectionUpdateActionMove,
-    BTRCollectionUpdateActionNone
-};
-
-@interface BTRCollectionViewUpdateItem : NSObject
-@property (nonatomic, readonly, strong) NSIndexPath *indexPathBeforeUpdate;
-@property (nonatomic, readonly, strong) NSIndexPath *indexPathAfterUpdate;
-@property (nonatomic, readonly, assign) BTRCollectionUpdateAction updateAction;
-- (id)initWithInitialIndexPath:(NSIndexPath *)initialIndexPath
-                finalIndexPath:(NSIndexPath *)finalIndexPath
-                  updateAction:(BTRCollectionUpdateAction)updateAction;
-- (id)initWithAction:(BTRCollectionUpdateAction)updateAction
-        forIndexPath:(NSIndexPath *)indexPath;
-- (NSComparisonResult)compareIndexPaths:(BTRCollectionViewUpdateItem*) otherItem;
-- (NSComparisonResult)inverseCompareIndexPaths:(BTRCollectionViewUpdateItem*) otherItem;
-- (BOOL)isSectionOperation;
-@end
-
-@interface BTRCollectionViewItemKey : NSObject <NSCopying>
-+ (id)collectionItemKeyForLayoutAttributes:(BTRCollectionViewLayoutAttributes *)layoutAttributes;
-+ (id)collectionItemKeyForDecorationViewOfKind:(NSString *)elementKind andIndexPath:(NSIndexPath *)indexPath;
-+ (id)collectionItemKeyForSupplementaryViewOfKind:(NSString *)elementKind andIndexPath:(NSIndexPath *)indexPath;
-+ (id)collectionItemKeyForCellWithIndexPath:(NSIndexPath *)indexPath;
-@property (nonatomic, assign) BTRCollectionViewItemType type;
-@property (nonatomic, strong) NSIndexPath *indexPath;
-@property (nonatomic, strong) NSString *identifier;
 @end

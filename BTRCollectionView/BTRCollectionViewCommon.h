@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 ButterKit. All rights reserved.
 //
 
-@class BTRCollectionReusableView, BTRCollectionViewCell;
+@class BTRCollectionView, BTRCollectionReusableView, BTRCollectionViewCell;
 @protocol BTRCollectionViewDataSource <NSObject>
 @required
 

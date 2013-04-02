@@ -11,13 +11,26 @@
 extern NSString *const BTRCollectionElementKindSectionHeader;
 extern NSString *const BTRCollectionElementKindSectionFooter;
 
+extern NSString * const BTRCollectionViewOldModelKey;
+extern NSString * const BTRCollectionViewNewModelKey;
+extern NSString * const BTRCollectionViewOldToNewIndexMapKey;
+extern NSString * const BTRCollectionViewNewToOldIndexMapKey;
+
+extern NSString * const BTRCollectionViewDeletedItemsCount;
+extern NSString * const BTRCollectionViewInsertedItemsCount;
+extern NSString * const BTRCollectionViewMovedOutCount;
+extern NSString * const BTRCollectionViewMovedInCount;
+extern NSString * const BTRCollectionViewPreviousLayoutInfoKey;
+extern NSString * const BTRCollectionViewNewLayoutInfoKey;
+extern NSString * const BTRCollectionViewViewKey;
+
 typedef NS_ENUM(NSUInteger, BTRCollectionViewItemType) {
     BTRCollectionViewItemTypeCell,
     BTRCollectionViewItemTypeSupplementaryView,
     BTRCollectionViewItemTypeDecorationView
 };
 
-@class BTRCollectionViewLayoutAttributes, BTRCollectionView;
+@class BTRCollectionViewLayoutAttributes, BTRCollectionView, BTRCollectionReusableView;
 /**
  The BTRCollectionViewLayout class is an abstract base class that you subclass and use to generate layout information for a collection view. The job of a layout object is to determine the placement of cells, supplementary views, and decoration views inside the collection view’s bounds and to report that information to the collection view when asked. The collection view then applies the provided layout information to the corresponding views so that they can be presented onscreen.
  */
@@ -47,7 +60,7 @@ typedef NS_ENUM(NSUInteger, BTRCollectionViewItemType) {
  
  If you previously registered a class or nib file with the same kind string, the class you specify in the viewClass parameter replaces the old entry. You may specify nil for viewClass if you want to unregister the decoration view.
  */
-- (void)registerClass:(Class)viewClass forDecorationViewOfKind:(NSString *)decorationViewKind;
+- (void)registerClass:(Class)viewClass forDecorationViewOfKind:(NSString *)kind;
 
 /**
  Registers a nib file for use in creating decoration views for a collection view.
@@ -116,6 +129,9 @@ typedef NS_ENUM(NSUInteger, BTRCollectionViewItemType) {
  */
 @property (nonatomic, strong) NSIndexPath *indexPath;
 
+
+@property (nonatomic, copy, readonly) NSString *reuseIdentifier;
+
 /**
  The layout-specific identifier for the target view. (read-only)
  @discussion You can use the value in this property to identify the specific purpose of the supplementary or decoration view associated with the attributes. This property is nil if the `representedElementCategory` property contains the value BTRCollectionElementCategoryCell.
@@ -183,6 +199,8 @@ typedef NS_ENUM(NSUInteger, BTRCollectionViewItemType) {
  */
 - (void)prepareLayout;
 
++ (Class)layoutAttributesClass; // override this method to provide a custom class to be used when instantiating instances of PSTCollectionViewLayoutAttributes
+
 /**
  Returns the layout attributes for all of the cells and views in the specified rectangle.
  @param rect The rectangle (specified in the collection view’s coordinate system) containing the target views.
@@ -217,7 +235,7 @@ typedef NS_ENUM(NSUInteger, BTRCollectionViewItemType) {
  @return A layout attributes object containing the information to apply to the decoration view.
  @discussion If your layout object defines any decoration views, you must override this method and use it to return layout information for those views.
  */
-- (BTRCollectionViewLayoutAttributes *)layoutAttributesForDecorationViewWithReuseIdentifier:(NSString*)identifier atIndexPath:(NSIndexPath *)indexPath;
+- (BTRCollectionViewLayoutAttributes *)layoutAttributesForDecorationViewOfKind:(NSString*)kind atIndexPath:(NSIndexPath *)indexPath;
 
 /**
  Returns the point at which to stop scrolling.
@@ -307,9 +325,5 @@ typedef NS_ENUM(NSUInteger, BTRCollectionViewItemType) {
 
 @interface BTRCollectionViewLayout (Private)
 - (void)setCollectionViewBoundsSize:(CGSize)size;
+- (BTRCollectionReusableView *)decorationViewForCollectionView:(BTRCollectionView *)collectionView withReuseIdentifier:(NSString *)reuseIdentifier indexPath:(NSIndexPath *)indexPath;
 @end
-
-extern NSString* const BTRCollectionViewOldModelKey;
-extern NSString* const BTRCollectionViewNewModelKey;
-extern NSString *const BTRCollectionViewOldToNewIndexMapKey;
-extern NSString* const BTRCollectionViewNewToOldIndexMapKey;

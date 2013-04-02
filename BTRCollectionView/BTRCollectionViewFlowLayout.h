@@ -35,7 +35,7 @@ typedef NS_ENUM(NSInteger, BTRCollectionViewScrollDirection) {
 @property (nonatomic) CGSize headerReferenceSize;
 @property (nonatomic) CGSize footerReferenceSize;
 
-@property (nonatomic) NSEdgeInsets sectionInset;
+@property (nonatomic) NSEdgeInsets sectionInset; // currently does nothing
 @property (nonatomic, strong) NSDictionary *rowAlignmentOptions;
 
 @end

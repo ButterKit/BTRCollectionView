@@ -90,6 +90,7 @@ static NSInteger count;
 - (void)addCell:(id)sender {
 	[self.sections[0] addObject:@([[self.sections[0] lastObject] unsignedIntegerValue] + 1)];
 	NSIndexPath *path = [NSIndexPath btr_indexPathForRow:[self.sections[0] count] - 1 inSection:0];
+	NSLog(@"%@",path);
 	[self.collectionView insertItemsAtIndexPaths:@[path]];
 }
 @end

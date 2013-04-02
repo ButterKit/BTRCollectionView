@@ -26,6 +26,20 @@
 		217164C316B71B1900D4540D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217164C216B71B1900D4540D /* QuartzCore.framework */; };
 		2171668016B71E1A00D4540D /* BTRCollectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171644116B71A1C00D4540D /* BTRCollectionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB0BCDD816BE013E0060845D /* Butter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BCDCD16BE01010060845D /* Butter.framework */; };
+		AB721C9216FBD44000721096 /* BTRCollectionViewData.h in Headers */ = {isa = PBXBuildFile; fileRef = AB721C9016FBD43F00721096 /* BTRCollectionViewData.h */; };
+		AB721C9316FBD44000721096 /* BTRCollectionViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = AB721C9116FBD43F00721096 /* BTRCollectionViewData.m */; };
+		AB721C9616FBD6AC00721096 /* BTRCollectionViewItemKey.h in Headers */ = {isa = PBXBuildFile; fileRef = AB721C9416FBD6AC00721096 /* BTRCollectionViewItemKey.h */; };
+		AB721C9716FBD6AC00721096 /* BTRCollectionViewItemKey.m in Sources */ = {isa = PBXBuildFile; fileRef = AB721C9516FBD6AC00721096 /* BTRCollectionViewItemKey.m */; };
+		ABB0F1F716FBDC5A002004F5 /* BTRGridLayoutInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB0F1F516FBDC5A002004F5 /* BTRGridLayoutInfo.h */; };
+		ABB0F1F816FBDC5A002004F5 /* BTRGridLayoutInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB0F1F616FBDC5A002004F5 /* BTRGridLayoutInfo.m */; };
+		ABB0F1FB16FBDC63002004F5 /* BTRGridLayoutItem.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB0F1F916FBDC63002004F5 /* BTRGridLayoutItem.h */; };
+		ABB0F1FC16FBDC63002004F5 /* BTRGridLayoutItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB0F1FA16FBDC63002004F5 /* BTRGridLayoutItem.m */; };
+		ABB0F1FF16FBDC6F002004F5 /* BTRGridLayoutRow.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB0F1FD16FBDC6F002004F5 /* BTRGridLayoutRow.h */; };
+		ABB0F20016FBDC6F002004F5 /* BTRGridLayoutRow.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB0F1FE16FBDC6F002004F5 /* BTRGridLayoutRow.m */; };
+		ABB0F20316FBDC78002004F5 /* BTRGridLayoutSection.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB0F20116FBDC78002004F5 /* BTRGridLayoutSection.h */; };
+		ABB0F20416FBDC78002004F5 /* BTRGridLayoutSection.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB0F20216FBDC78002004F5 /* BTRGridLayoutSection.m */; };
+		ABB0F22716FBE22B002004F5 /* BTRCollectionViewUpdateItem.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB0F22516FBE22A002004F5 /* BTRCollectionViewUpdateItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ABB0F22816FBE22B002004F5 /* BTRCollectionViewUpdateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB0F22616FBE22A002004F5 /* BTRCollectionViewUpdateItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -185,6 +199,20 @@
 		2171665F16B71D7F00D4540D /* 8.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.JPG; sourceTree = "<group>"; };
 		2171666016B71D7F00D4540D /* 9.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.JPG; sourceTree = "<group>"; };
 		AB0BCDC116BE01010060845D /* Butter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Butter.xcodeproj; path = External/Butter/Butter.xcodeproj; sourceTree = SOURCE_ROOT; };
+		AB721C9016FBD43F00721096 /* BTRCollectionViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRCollectionViewData.h; sourceTree = "<group>"; };
+		AB721C9116FBD43F00721096 /* BTRCollectionViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTRCollectionViewData.m; sourceTree = "<group>"; };
+		AB721C9416FBD6AC00721096 /* BTRCollectionViewItemKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRCollectionViewItemKey.h; sourceTree = "<group>"; };
+		AB721C9516FBD6AC00721096 /* BTRCollectionViewItemKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTRCollectionViewItemKey.m; sourceTree = "<group>"; };
+		ABB0F1F516FBDC5A002004F5 /* BTRGridLayoutInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRGridLayoutInfo.h; sourceTree = "<group>"; };
+		ABB0F1F616FBDC5A002004F5 /* BTRGridLayoutInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTRGridLayoutInfo.m; sourceTree = "<group>"; };
+		ABB0F1F916FBDC63002004F5 /* BTRGridLayoutItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRGridLayoutItem.h; sourceTree = "<group>"; };
+		ABB0F1FA16FBDC63002004F5 /* BTRGridLayoutItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTRGridLayoutItem.m; sourceTree = "<group>"; };
+		ABB0F1FD16FBDC6F002004F5 /* BTRGridLayoutRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRGridLayoutRow.h; sourceTree = "<group>"; };
+		ABB0F1FE16FBDC6F002004F5 /* BTRGridLayoutRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTRGridLayoutRow.m; sourceTree = "<group>"; };
+		ABB0F20116FBDC78002004F5 /* BTRGridLayoutSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRGridLayoutSection.h; sourceTree = "<group>"; };
+		ABB0F20216FBDC78002004F5 /* BTRGridLayoutSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTRGridLayoutSection.m; sourceTree = "<group>"; };
+		ABB0F22516FBE22A002004F5 /* BTRCollectionViewUpdateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRCollectionViewUpdateItem.h; sourceTree = "<group>"; };
+		ABB0F22616FBE22A002004F5 /* BTRCollectionViewUpdateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTRCollectionViewUpdateItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,19 +271,33 @@
 		2171643A16B71A1C00D4540D /* BTRCollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				2171644D16B71A7400D4540D /* BTRCollectionViewCell.m */,
+				2171644116B71A1C00D4540D /* BTRCollectionView.h */,
+				2171644216B71A1C00D4540D /* BTRCollectionView.m */,
 				2171644C16B71A7400D4540D /* BTRCollectionViewCell.h */,
+				2171644D16B71A7400D4540D /* BTRCollectionViewCell.m */,
 				2171644E16B71A7400D4540D /* BTRCollectionViewCommon.h */,
+				AB721C9016FBD43F00721096 /* BTRCollectionViewData.h */,
+				AB721C9116FBD43F00721096 /* BTRCollectionViewData.m */,
 				2171644F16B71A7400D4540D /* BTRCollectionViewFlowLayout.h */,
 				2171645016B71A7400D4540D /* BTRCollectionViewFlowLayout.m */,
 				2171645116B71A7400D4540D /* BTRCollectionViewLayout.h */,
 				2171645216B71A7400D4540D /* BTRCollectionViewLayout.m */,
+				AB721C9416FBD6AC00721096 /* BTRCollectionViewItemKey.h */,
+				AB721C9516FBD6AC00721096 /* BTRCollectionViewItemKey.m */,
 				2171645316B71A7400D4540D /* BTRCollectionViewListLayout.h */,
 				2171645416B71A7400D4540D /* BTRCollectionViewListLayout.m */,
 				2171645616B71A7400D4540D /* Extensions */,
-				2171644116B71A1C00D4540D /* BTRCollectionView.h */,
-				2171644216B71A1C00D4540D /* BTRCollectionView.m */,
 				2171643B16B71A1C00D4540D /* Supporting Files */,
+				ABB0F1F516FBDC5A002004F5 /* BTRGridLayoutInfo.h */,
+				ABB0F1F616FBDC5A002004F5 /* BTRGridLayoutInfo.m */,
+				ABB0F1F916FBDC63002004F5 /* BTRGridLayoutItem.h */,
+				ABB0F1FA16FBDC63002004F5 /* BTRGridLayoutItem.m */,
+				ABB0F1FD16FBDC6F002004F5 /* BTRGridLayoutRow.h */,
+				ABB0F1FE16FBDC6F002004F5 /* BTRGridLayoutRow.m */,
+				ABB0F20116FBDC78002004F5 /* BTRGridLayoutSection.h */,
+				ABB0F20216FBDC78002004F5 /* BTRGridLayoutSection.m */,
+				ABB0F22516FBE22A002004F5 /* BTRCollectionViewUpdateItem.h */,
+				ABB0F22616FBE22A002004F5 /* BTRCollectionViewUpdateItem.m */,
 			);
 			path = BTRCollectionView;
 			sourceTree = "<group>";
@@ -517,6 +559,13 @@
 				2171646216B71A7400D4540D /* BTRCollectionViewListLayout.h in Headers */,
 				2171646516B71A7400D4540D /* NSIndexPath+BTRAdditions.h in Headers */,
 				2171646716B71A7400D4540D /* NSValue+BTRAdditions.h in Headers */,
+				AB721C9216FBD44000721096 /* BTRCollectionViewData.h in Headers */,
+				AB721C9616FBD6AC00721096 /* BTRCollectionViewItemKey.h in Headers */,
+				ABB0F1F716FBDC5A002004F5 /* BTRGridLayoutInfo.h in Headers */,
+				ABB0F1FB16FBDC63002004F5 /* BTRGridLayoutItem.h in Headers */,
+				ABB0F1FF16FBDC6F002004F5 /* BTRGridLayoutRow.h in Headers */,
+				ABB0F20316FBDC78002004F5 /* BTRGridLayoutSection.h in Headers */,
+				ABB0F22716FBE22B002004F5 /* BTRCollectionViewUpdateItem.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,6 +700,13 @@
 				2171646316B71A7400D4540D /* BTRCollectionViewListLayout.m in Sources */,
 				2171646616B71A7400D4540D /* NSIndexPath+BTRAdditions.m in Sources */,
 				2171646816B71A7400D4540D /* NSValue+BTRAdditions.m in Sources */,
+				AB721C9316FBD44000721096 /* BTRCollectionViewData.m in Sources */,
+				AB721C9716FBD6AC00721096 /* BTRCollectionViewItemKey.m in Sources */,
+				ABB0F1F816FBDC5A002004F5 /* BTRGridLayoutInfo.m in Sources */,
+				ABB0F1FC16FBDC63002004F5 /* BTRGridLayoutItem.m in Sources */,
+				ABB0F20016FBDC6F002004F5 /* BTRGridLayoutRow.m in Sources */,
+				ABB0F20416FBDC78002004F5 /* BTRGridLayoutSection.m in Sources */,
+				ABB0F22816FBE22B002004F5 /* BTRCollectionViewUpdateItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
